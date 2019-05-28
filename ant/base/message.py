@@ -206,8 +206,12 @@ class Message:
         data = buf[3:-1]
         checksum = buf[-1]
 
-        assert sync == 0xa4
-        assert length == len(data)
-        assert checksum == reduce(lambda x, y: x ^ y, buf[:-1])
-
-        return Message(mId, data)
+        try:
+            assert sync == 0xa4
+            assert length == len(data)
+            assert checksum == reduce(lambda x, y: x ^ y, buf[:-1])
+        except:
+            mId = 0x22
+            data = 0x4FFFFF03FFFFFFFF
+        finally:
+            return Message(mId, data)
