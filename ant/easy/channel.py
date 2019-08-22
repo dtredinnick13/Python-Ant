@@ -65,7 +65,12 @@ class Channel():
 
     def open(self):
         self._ant.open_channel(self.id)
+        print("Opening channel: ", self.id)
         return self.wait_for_response(Message.ID.OPEN_CHANNEL)
+
+    def unassign(self):
+        self._ant.unassign_channel(self.id)
+        return self.wait_for_response(Message.ID.UNASSIGN_CHANNEL)
 
     def set_id(self, deviceNum, deviceType, transmissionType):
         self._ant.set_channel_id(self.id, deviceNum, deviceType, transmissionType)

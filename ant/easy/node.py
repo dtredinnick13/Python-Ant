@@ -39,6 +39,15 @@ from ant.easy.channel import Channel
 from ant.easy.filter import wait_for_event, wait_for_response, wait_for_special
 
 _logger = logging.getLogger("ant.easy.node")
+_logger.setLevel(logging.DEBUG)
+fh = logging.FileHandler('easyAny.log', 'a', None, False)
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+_logger.addHandler(fh)
+logging.basicConfig(level=logging.INFO)
+_logger.info('start')
+
 
 
 class Node():
