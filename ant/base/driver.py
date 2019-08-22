@@ -156,6 +156,7 @@ try:
         def open(self):
             # Find USB device
             _logger.debug("USB Find device, vendor %#04x, product %#04x", self.ID_VENDOR, self.ID_PRODUCT)
+            print("USB Find device, vendor %#04x, product %#04x", self.ID_VENDOR, self.ID_PRODUCT)
             dev = usb.core.find(idVendor=self.ID_VENDOR, idProduct=self.ID_PRODUCT)
 
             # was it found?
@@ -165,10 +166,13 @@ try:
             _logger.debug("USB Config values:")
             for cfg in dev:
                 _logger.debug(" Config %s", cfg.bConfigurationValue)
+                print(" Config: ", cfg.bConfigurationValue)
                 for intf in cfg:
                     _logger.debug("  Interface %s, Alt %s", str(intf.bInterfaceNumber), str(intf.bAlternateSetting))
+                    print("  Interface: ",str(intf.bInterfaceNumber)," Alt: ",str(intf.bAlternateSetting))
                     for ep in intf:
                         _logger.debug("   Endpoint %s", str(ep.bEndpointAddress))
+                        print("   Endpoint: ", str(ep.bEndpointAddress))
 
             # unmount a kernel driver (TODO: should probably reattach later)
             try:

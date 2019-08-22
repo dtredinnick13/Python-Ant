@@ -229,7 +229,9 @@ class Ant():
     # Ant functions
 
     def unassign_channel(self, channel):
-        pass
+        #pass
+        message = Message(Message.ID.UNASSIGN_CHANNEL, [channel])
+        self.write_message(message)
 
     def assign_channel(self, channel, channelType, networkNumber):
         message = Message(Message.ID.ASSIGN_CHANNEL, [channel, channelType, networkNumber])

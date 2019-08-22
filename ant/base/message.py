@@ -213,5 +213,6 @@ class Message:
         except:
             mId = 0x22
             data = 0x4FFFFF03FFFFFFFF
+            print("Corrupt Ant Message Received from Sensor:", str(buf))
         finally:
             return Message(mId, data)
